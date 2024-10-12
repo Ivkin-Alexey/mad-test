@@ -5,3 +5,5 @@ export interface IQuestion {
     time?: number
     isOptional?: boolean
 }
+
+export type TTime = number
