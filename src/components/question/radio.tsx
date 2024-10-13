@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormLabel,
   RadioGroup,
   FormControlLabel,
   Radio as MUIRadio,
@@ -8,10 +7,11 @@ import {
 
 interface IProps {
   options: string[]
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 function Radio(props: IProps) {
-  const { options } = props
+  const { options, handleChange } = props
 
   return (
     <FormControl>
@@ -19,10 +19,12 @@ function Radio(props: IProps) {
         aria-labelledby="demo-radio-buttons-group-label"
         defaultValue={options[0]}
         name="radio-buttons-group"
+        onChange={handleChange}
       >
         {options.map(el => {
           return (
             <FormControlLabel
+              key={el}
               value={el}
               control={<MUIRadio />}
               label={el}

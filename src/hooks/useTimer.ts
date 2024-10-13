@@ -4,10 +4,10 @@ const SECOND = 1000;
 const MINUTES = SECOND*60;
 
 export default function useTimer(deadline: number = 60) {
-  const [time, setTime] = useState(deadline * 1000);
+  const [time, setTime] = useState(deadline * SECOND);
 
   useEffect(() => {
-    setTime(deadline * 1000);
+    setTime(deadline * SECOND);
   }, [deadline]);
 
   useEffect(() => {
