@@ -4,11 +4,12 @@ interface IProps {
   isStepOptional: boolean | undefined,
   handleSkip: () => void,
   handleNext: () => void,
+  isDisabled: boolean
 }
 
 function ControlButtons(props: IProps) {
 
-const {isStepOptional = false, handleSkip, handleNext} = props
+const {isStepOptional = false, handleSkip, handleNext, isDisabled} = props
 
   return (
     <>
@@ -27,7 +28,7 @@ const {isStepOptional = false, handleSkip, handleNext} = props
             Пропустить
           </Button>
         )}
-        <Button onClick={handleNext}>
+        <Button onClick={handleNext} disabled={isDisabled}>
           {/* {isFinal ? "Завершить" : "Ответить"} */}
           Ответить
         </Button>

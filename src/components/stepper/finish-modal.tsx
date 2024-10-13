@@ -1,20 +1,23 @@
 import { Box, Button, Typography } from "@mui/material"
+import AnswersList from "../answers-list"
 
 interface IProps {
   handleReset: () => void
-  answersList: React.ReactNode
 }
 
 function FinishModal(props: IProps) {
+
+  const {handleReset} = props
+
   return (
     <>
       <Typography sx={{ mt: 2, mb: 1 }}>
         Поздравляем! Вы прошли тест!
       </Typography>
-      {props.answersList}
+      <AnswersList/>
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Box sx={{ flex: "1 1 auto" }} />
-        <Button onClick={props.handleReset}>Начать заново</Button>
+        <Button onClick={handleReset}>Начать заново</Button>
       </Box>
     </>
   )

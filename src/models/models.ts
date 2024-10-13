@@ -9,7 +9,7 @@ export interface IQuestion {
     options?: string[]
     time?: number
     isOptional?: boolean
-    userAnswer?: string
+    default?: string
 }
 
 export interface IAnswer {

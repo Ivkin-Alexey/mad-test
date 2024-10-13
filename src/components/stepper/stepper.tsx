@@ -19,37 +19,40 @@ import {
   selectCurQuestion,
   selectQuestions,
 } from "../../app/store/selectors"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Stepper() {
   const [activeStep, setActiveStep] = useState(0)
   const [inputValue, setInputValue] = useState<string | string[]>("")
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const dispatch = useAppDispatch()
 
   const questions = useAppSelector(selectQuestions)
   const curQuestion = useAppSelector(selectCurQuestion)
-  const answers = useAppSelector(selectAnswers)
 
   const isFinish = (step: number) => {
     if (step !== 0) {
-      renderAnswers()
       return questions.length === step
     }
   }
 
-  function renderAnswers() {
-    return (
-      <Stack spacing={2}>
-        {answers.map((el, i) => {
-          let { userAnswer } = el
-          if (Array.isArray(userAnswer)) {
-            userAnswer = userAnswer.join(",")
-          }
-          return <Typography key={i}>{userAnswer}</Typography>
-        })}
-      </Stack>
-    )
-  }
+  useEffect(() => {
+    if (inputValue.length > 0) {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [inputValue])
+
+  useEffect(() => {
+    if (curQuestion?.type === "single" && curQuestion?.options) {
+      setInputValue(curQuestion?.options[0])
+    } else if (curQuestion?.default) {
+      setInputValue(curQuestion.default)
+    } else {
+      setInputValue("")
+    }
+  }, [curQuestion])
 
   const handleNext = () => {
     const { id } = questions[activeStep]
@@ -92,9 +95,9 @@ export default function Stepper() {
       <>
         {
           <MUIStepper activeStep={activeStep} sx={{ marginBottom: "20px" }}>
-            {questions.map((el, index) => {
+            {questions.map((_, i) => {
               return (
-                <Step key={index}>
+                <Step key={i}>
                   <StepLabel />
                 </Step>
               )
@@ -108,13 +111,13 @@ export default function Stepper() {
               isStepOptional={curQuestion?.isOptional}
               handleSkip={handleSkip}
               handleNext={handleNext}
+              isDisabled={isDisabled}
             />
           </>
         )}
         {isFinish(activeStep) && (
           <FinishModal
             handleReset={handleReset}
-            answersList={renderAnswers()}
           />
         )}
       </>

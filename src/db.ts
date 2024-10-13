@@ -1,7 +1,7 @@
 const questions = [
     {
         id: "id0",
-        type: "one",
+        type: "single",
         topic: "Выберите Ваше любимое число",
         options: ["Один", "Два", "Три", "Четыре"],
         time: 60
@@ -22,6 +22,7 @@ const questions = [
         id: "id3",
         type: "multiline",
         topic: "Расскажите о себе",
+        default: "Я очень хороший человек.",
         time: 120
     },
 ]

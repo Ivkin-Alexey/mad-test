@@ -16,10 +16,11 @@ interface IProps {
 function Question(props: IProps) {
 
   const {handleChange, question} = props
-  const { topic, type, options } = question;
+  const { topic, type, options, isOptional } = question
+  const title = topic + (isOptional ? " (возможно несколько вариантов)" : "")
   
   const renderInputs = useMemo(() => {
-    if (type === "one" && options) {
+    if (type === "single" && options) {
       return <Radio options={options} handleChange={handleChange} />;
     }
 
@@ -45,18 +46,18 @@ function Question(props: IProps) {
           name="multiline"
           multiline
           rows={3}
-          defaultValue="Я очень хороший человек."
+          defaultValue={question.default}
           onChange={handleChange}
         />
       );
     }
 
     return null;
-  }, [handleChange, options, type]);
+  }, [handleChange, question]);
 
   return (
     <Container>
-      <Typography>{topic}</Typography>
+      <Typography>{title}</Typography>
         {renderInputs}
     </Container>
   );

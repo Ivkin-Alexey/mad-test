@@ -11,7 +11,7 @@ function CheckBox(props: IProps) {
     <FormGroup>
       {options.map(el => {
         return (
-          <FormControlLabel key={el} control={<Checkbox onChange={handleChange}/>} label={el} />
+          <FormControlLabel key={el} control={<Checkbox name={el} onChange={handleChange}/>} label={el} />
         )
       })}
     </FormGroup>
