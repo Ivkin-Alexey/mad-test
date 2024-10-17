@@ -11,12 +11,14 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
   addAnswer,
   resetAnswers,
+  resetTest,
   setCurrentQuestion,
 } from "../../app/store/questionsSlice"
 import { CircularProgress, Stack } from "@mui/material"
 import {
   selectAnswers,
   selectCurQuestion,
+  selectIsFailed,
   selectQuestions,
 } from "../../app/store/selectors"
 import { useEffect, useState } from "react"
@@ -29,6 +31,7 @@ export default function Stepper() {
 
   const questions = useAppSelector(selectQuestions)
   const curQuestion = useAppSelector(selectCurQuestion)
+  const isFailed = useAppSelector(selectIsFailed)
 
   const isFinish = (step: number) => {
     if (step !== 0) {
@@ -68,8 +71,7 @@ export default function Stepper() {
 
   const handleReset = () => {
     setActiveStep(0)
-    dispatch(setCurrentQuestion(questions[0]))
-    dispatch(resetAnswers())
+    dispatch(resetTest())
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +92,8 @@ export default function Stepper() {
 
   function renderStepper() {
     if (!questions) return null
+
+    if(isFailed) return <FinishModal handleReset={handleReset}/>
 
     return (
       <>

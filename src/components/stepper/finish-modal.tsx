@@ -1,5 +1,7 @@
 import { Box, Button, Typography } from "@mui/material"
 import AnswersList from "../answers-list"
+import { useAppSelector } from "../../app/hooks"
+import { selectIsFailed } from "../../app/store/selectors"
 
 interface IProps {
   handleReset: () => void
@@ -9,12 +11,14 @@ function FinishModal(props: IProps) {
 
   const {handleReset} = props
 
+  const isFailed = useAppSelector(selectIsFailed)
+
   return (
     <>
       <Typography sx={{ mt: 2, mb: 1 }}>
-        Поздравляем! Вы прошли тест!
+        {isFailed ? "К сожалению, время вышло!" : "Поздравляем! Вы прошли тест!"}
       </Typography>
-      <AnswersList/>
+      {isFailed ? null : <AnswersList/>}
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Box sx={{ flex: "1 1 auto" }} />
         <Button onClick={handleReset}>Начать заново</Button>
