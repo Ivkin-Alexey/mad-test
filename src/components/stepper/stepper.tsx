@@ -10,8 +10,9 @@ import Question from "../question/question"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
   addAnswer,
+  fetchData,
   resetAnswers,
-  resetTest,
+  resetState,
   setCurrentQuestion,
 } from "../../app/store/questionsSlice"
 import { CircularProgress, Stack } from "@mui/material"
@@ -71,7 +72,8 @@ export default function Stepper() {
 
   const handleReset = () => {
     setActiveStep(0)
-    dispatch(resetTest())
+    dispatch(resetState())
+    dispatch(fetchData())
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
