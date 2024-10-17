@@ -23,7 +23,7 @@ export const fetchData = createAsyncThunk<IQuestion[], void>(
     return new Promise((resolve) => { 
       setTimeout(() => { 
         resolve(questionsList); 
-      }, 1000); 
+      }, 500); 
     }); 
   }
 ); 

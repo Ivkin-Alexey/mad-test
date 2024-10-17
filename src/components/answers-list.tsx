@@ -7,13 +7,13 @@ function AnswersList() {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="h6">Ваши ответы:</Typography>
+      <Typography variant="h6" pl={"8px"}>Ваши ответы:</Typography>
       {list.map((el, i) => {
         let { userAnswer } = el
         if (Array.isArray(userAnswer)) {
           userAnswer = userAnswer.join(", ")
         }
-        return <Typography key={i}>{i+1 + ". " + userAnswer}</Typography>
+        return <Typography key={i} pl={"8px"}>{i+1 + ". " + userAnswer}</Typography>
       })}
     </Stack>
   )

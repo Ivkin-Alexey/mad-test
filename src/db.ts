@@ -23,7 +23,7 @@ const questions = [
         type: "multiline",
         topic: "Расскажите о себе",
         default: "Я очень хороший человек.",
-        time: 2
+        time: 15
     },
 ]
 

@@ -35,6 +35,7 @@ function Question(props: IProps) {
           name="singleLine"
           variant="outlined"
           onChange={handleChange}
+                    fullWidth={true}
         />
       );
     }
@@ -48,6 +49,7 @@ function Question(props: IProps) {
           rows={3}
           defaultValue={question.default}
           onChange={handleChange}
+          fullWidth={true}
         />
       );
     }

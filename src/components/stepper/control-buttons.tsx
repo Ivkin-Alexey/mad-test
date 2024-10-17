@@ -24,11 +24,11 @@ const {isStepOptional = false, handleSkip, handleNext, isDisabled} = props
               </Button> */}
         <Box sx={{ flex: "1 1 auto" }} />
         {isStepOptional && (
-          <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+          <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }} variant="contained">
             Пропустить
           </Button>
         )}
-        <Button onClick={handleNext} disabled={isDisabled}>
+        <Button onClick={handleNext} disabled={isDisabled} variant="contained">
           {/* {isFinal ? "Завершить" : "Ответить"} */}
           Ответить
         </Button>

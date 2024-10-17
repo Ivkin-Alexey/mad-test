@@ -15,13 +15,13 @@ function FinishModal(props: IProps) {
 
   return (
     <>
-      <Typography sx={{ mt: 2, mb: 1 }}>
+      <Typography sx={{ mt: 2, mb: 1, padding: "8px" }}>
         {isFailed ? "К сожалению, время вышло!" : "Поздравляем! Вы прошли тест!"}
       </Typography>
       {isFailed ? null : <AnswersList/>}
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Box sx={{ flex: "1 1 auto" }} />
-        <Button onClick={handleReset}>Начать заново</Button>
+        <Button onClick={handleReset} variant="contained">Начать заново</Button>
       </Box>
     </>
   )
