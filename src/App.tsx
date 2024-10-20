@@ -1,9 +1,9 @@
 import { Box, Container } from "@mui/material"
-import Stepper from "./components/stepper/stepper"
 import Header from "./components/header"
 import { useEffect } from "react"
 import { useAppDispatch } from "./app/hooks"
 import { fetchData } from "./app/store/questionsSlice"
+import Main from "./routes/main"
 
 const App = () => {
   const dispatch = useAppDispatch()
@@ -22,7 +22,7 @@ const App = () => {
         }}
       >
         <Header />
-        <Stepper />
+        <Main />
       </Box>
     </Container>
   )

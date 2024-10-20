@@ -7,14 +7,14 @@ interface AnswerState {
   questions: { data: IQuestion[], isLoading: boolean, isError: boolean }; 
   answers: IAnswer[]; 
   curQuestion: IQuestion | null; 
-  isTestFailed: boolean;  
+  isTimeOver: boolean;  
 } 
 
 const initialState: AnswerState = { 
   answers: [], 
   questions: { data: [], isLoading: false, isError: false }, 
   curQuestion: null, 
-  isTestFailed: false 
+  isTimeOver: false 
 };
 
 export const fetchData = createAsyncThunk<IQuestion[], void>(
@@ -47,8 +47,8 @@ export const questionsSlice = createSlice({
     setCurrentQuestion: (state, action: PayloadAction<IQuestion>) => { 
       state.curQuestion = action.payload; 
     }, 
-    setIsFailed: (state, action: PayloadAction<boolean>) => { 
-      state.isTestFailed = action.payload; 
+    setIsTimeOver: (state, action: PayloadAction<boolean>) => { 
+      state.isTimeOver = action.payload; 
     }, 
   }, 
   extraReducers: (builder) => { 
@@ -68,7 +68,7 @@ export const questionsSlice = createSlice({
   }, 
 }); 
 
-export const { addAnswer, setCurrentQuestion, setQuestions, resetAnswers, setIsFailed, resetState } = 
+export const { addAnswer, setCurrentQuestion, setQuestions, resetAnswers, setIsTimeOver, resetState } = 
   questionsSlice.actions; 
 
 export default questionsSlice.reducer; 

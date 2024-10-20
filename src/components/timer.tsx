@@ -3,7 +3,7 @@ import useTimer from "../hooks/useTimer"
 import type { TTime } from "../models/models"
 import { useEffect, useState } from "react"
 import { useAppDispatch } from "../app/hooks"
-import { setIsFailed } from "../app/store/questionsSlice"
+import { setIsTimeOver } from "../app/store/questionsSlice"
 
 function Timer(props: { time: TTime }) {
     
@@ -17,7 +17,7 @@ function Timer(props: { time: TTime }) {
             setColor("error")
         }
         if(minutes === "00" && seconds === "00") {
-            dispatch(setIsFailed(true))
+            dispatch(setIsTimeOver(true))
         }
     }, [seconds, minutes])
 
